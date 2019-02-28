@@ -18,8 +18,8 @@ TagManager:
   - 
   - 
   - Ground
-  - 
-  - 
+  - Background
+  - Controllers
   - 
   - 
   - 
@@ -45,8 +45,17 @@ TagManager:
   - name: Default
     uniqueID: 0
     locked: 0
+  - name: Controllers
+    uniqueID: 1547546699
+    locked: 0
   - name: Background
     uniqueID: 3723773333
+    locked: 0
+  - name: BehindPlatforms
+    uniqueID: 1636719889
+    locked: 0
+  - name: Platforms
+    uniqueID: 254979015
     locked: 0
   - name: Obstacles
     uniqueID: 1694711591

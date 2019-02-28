@@ -23,7 +23,7 @@ GameObject:
   - component: {fileID: 114573152736514058}
   - component: {fileID: 58763950922050128}
   - component: {fileID: 114124004439404508}
-  m_Layer: 0
+  m_Layer: 2
   m_Name: StarBullet
   m_TagString: Untagged
   m_Icon: {fileID: 0}

@@ -6,8 +6,8 @@ public class RotatingPlatform : MonoBehaviour
 {
     public float timerValue = 4.5f;
     float timeToTurn = 0;
-    float speedOfTurn = 30f;
-    float angleOfTurn = 90f;
+    //float speedOfTurn = 30f;
+    //float angleOfTurn = 90f;
     bool turn = false;
     void FixedUpdate()
     {

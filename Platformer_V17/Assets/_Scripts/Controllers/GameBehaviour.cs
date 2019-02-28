@@ -1,4 +1,5 @@
-﻿using System.Collections;
+﻿using System;
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
@@ -13,9 +14,13 @@ public class GameBehaviour : MonoBehaviour
     int nextLifeCost = 4;
     bool hasKey = false;
     int coinsThisRun = 0;
-    bool checkpointHit = false;
-    int currentCheckpoint = 0;
+
     void Awake()
+    {
+        singleton();
+    }
+
+    private void singleton()
     {
         //Check if instance already exists
         if (instance == null)
@@ -51,14 +56,20 @@ public class GameBehaviour : MonoBehaviour
         {
             coins -= nextLifeCost;
         }
-        
-        if(!checkpointHit)
-        {
-            hasKey = false;
-            SceneController.instance.changeScene(currentLevel);
+    }
+
+    public void loseLife()
+    {
+        if (lives==0)
+        { //if dead dead
+            lose();
         } else
         {
-
+            PlayerBehaviour.instance.newPlayer();
+            nextLife();
+            lives--;
+            UIController.instance.updateUI();
+            SceneController.instance.changeScene(currentLevel + 1);
         }
     }
 
@@ -69,33 +80,19 @@ public class GameBehaviour : MonoBehaviour
         currentLevel = 1;
         hasKey = false;
     }
-    
-    public void loseLife()
-    {
-        if (lives==0)
-        { //if dead dead
-            //PlayerBehaviour.instance.newPlayer();
-            lose();
-        } else
-        {
-            PlayerBehaviour.instance.newPlayer();
-            nextLife();
-            lives--;
-            UIController.instance.updateUI();
-        }
-    }
-    
+
     public void win()
     {
         currentLevel++;
         hasKey = false;
         SceneController.instance.nextLevel(currentLevel);
+        PersistentData.instance.completedLevels++;
     }
 
     public void lose()
     {
-        Debug.Log("You Lose!");
-        restartLevel();
+        SceneController.instance.changeScene(3);
+        ConclusionControl.instance.changeText(false);
     }
 
     public void levelEnd()
@@ -117,7 +114,7 @@ public class GameBehaviour : MonoBehaviour
     }
 
     ////////////// GETTERS AND SETTERS
-    ///
+    //
     public bool getKey()
     {
         return hasKey;
@@ -141,12 +138,6 @@ public class GameBehaviour : MonoBehaviour
     public int getCoins()
     {
         return coins;
-    }
-
-    public void checkpoint()
-    {
-        currentCheckpoint++;
-        checkpointHit = true;
     }
 
     public void addLife()

@@ -18,7 +18,7 @@ public class CannonBehaviour : MonoBehaviour
         timer -= Time.deltaTime;
         if (timer < 0)
         {
-            Instantiate(starObject,gameObject.transform);
+            ShootableObjects.instance.shootObject(0, this.transform);
             timer = spawnTime;
         }
     }

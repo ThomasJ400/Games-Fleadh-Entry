@@ -5,8 +5,9 @@ using UnityEngine;
 
 public class PlayerMovement : MonoBehaviour
 {
-    float speed = 8f;
-    float maxSpeed = 8f;
+    float speed = 7f;
+    float airMovement = 5f; //higher is slower
+    public float maxSpeed = 8f;
     float maxMag = 8f;
     float jumpForce = 8f;
     public Transform groundCheck;
@@ -15,9 +16,13 @@ public class PlayerMovement : MonoBehaviour
     float groundRadius = 0.35f;
 
     Rigidbody2D rb;
-    bool grounded = false;
+
+    [HideInInspector]
+    public bool grounded = false;
     bool facingRight = true;
-    public bool physicsBased = true;
+    [HideInInspector]
+    bool physicsBased = false;
+    
 
     // Start is called before the first frame update
     void Start()
@@ -29,34 +34,25 @@ public class PlayerMovement : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        grounded = Physics2D.OverlapCircle(groundCheck.position, groundRadius, whatIsGround);
-   
-        float movement = Input.GetAxis("Horizontal");
-        if(movement > 0 && !facingRight)
-        {
-            flip();
-        }
-        else if(movement < 0 && facingRight)
-        {
-            flip();
-        }
+        //Check for movement.
+        //Check if player is jumping.
+        //Check if player is on the ground.
 
-        Vector2 jumpVec = new Vector2(0, jumpForce);
-        Vector2 moveVector = new Vector2(movement, 0);
-
-        if(Input.GetKeyDown("space") && grounded)
+        float movement = Input.GetAxis("Horizontal"); //grab movement from input
+        Vector2 moveVector = new Vector2(movement, 0); //convert to a Vector2
+        
+        checkFlip(movement); //check if player is facing a different direction, and flip if necessary
+        checkIfGrounded(); //check if player is grounded
+        
+        if (Input.GetKeyDown("space") && grounded) //if player has pressed space, and is on the ground, then jump
         {
-            // Debug.Log("Jump");
-            rb.AddForce(jumpVec, ForceMode2D.Impulse);
-            
-            grounded = false;
+            jump();
         }
       
-        if (!grounded)
+        if (!grounded) //if not grounded dvide movement by air movement
         {
-            moveVector = moveVector / 5;
+            moveVector = moveVector / airMovement; 
         }
-
 
         if (physicsBased)
         {
@@ -85,19 +81,28 @@ public class PlayerMovement : MonoBehaviour
         }
     }
 
-    void flip()
+    void checkIfGrounded()
     {
-        facingRight = !facingRight;
-        Vector3 theScale = transform.localScale;
-        theScale.x *= -1;
-        transform.localScale = theScale;
-    }
- 
-
-    void OnTriggerEnter2D(Collider2D col)
-    {
-
-
+        grounded = Physics2D.OverlapCircle(groundCheck.position, groundRadius, whatIsGround);
     }
 
+    void checkFlip(float movement)
+    {
+        if ((movement > 0 && !facingRight) || (movement < 0 && facingRight))
+        {
+            facingRight = !facingRight;
+            Vector3 theScale = transform.localScale;
+            theScale.x *= -1;
+            transform.localScale = theScale;
+        }
+    }
+
+    void jump()
+    {
+        Vector2 jumpVec = new Vector2(0, jumpForce);
+        // Debug.Log("Jump");
+        rb.AddForce(jumpVec, ForceMode2D.Impulse);
+
+        grounded = false;
+    }
 }

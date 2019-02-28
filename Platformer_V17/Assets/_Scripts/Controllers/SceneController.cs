@@ -10,19 +10,7 @@ public class SceneController : MonoBehaviour
 
     void Awake()
     {
-        //Check if instance already exists
-        if (instance == null)
-        {
-            //if not, set instance to this
-            instance = this;
-        }
-        //If instance already exists and it's not this:
-        else if (instance != this)
-        {
-            //Then destroy this. This enforces our singleton pattern, meaning there can only ever be one instance of a GameManager.
-            Destroy(gameObject);
-        }
-        //Sets this to not be destroyed when reloading scene
+        singleton();
     }
 
     public void changeScene(int sceneID)
@@ -40,13 +28,27 @@ public class SceneController : MonoBehaviour
         Debug.Log("Current Level: " + GameBehaviour.instance.getCurrentLevel() + " maxLevel: " + lastLevel);
         if (currentLevel>lastLevel)
         {
-            Debug.Log("Level: " + GameBehaviour.instance.getCurrentLevel());
             GameBehaviour.instance.reset();
-            Debug.Log("Level: " + GameBehaviour.instance.getCurrentLevel());
-            changeScene(0);
+            GameBehaviour.instance.levelEnd();
         } else
         {
-            changeScene(currentLevel);
+            changeScene(currentLevel+1);
+        }
+    }
+
+    void singleton()
+    {
+        //Check if instance already exists
+        if (instance == null)
+        {
+            //if not, set instance to this
+            instance = this;
+        }
+        //If instance already exists and it's not this:
+        else if (instance != this)
+        {
+            //Then destroy this. This enforces our singleton pattern, meaning there can only ever be one instance of a GameManager.
+            Destroy(gameObject);
         }
     }
 

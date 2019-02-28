@@ -14,6 +14,6 @@ public class StarBehaviour : MonoBehaviour
 
     void FixedUpdate()
     {
-        gameObject.transform.Translate(Vector3.up / speed);
+        gameObject.transform.Translate(Vector2.up / speed);
     }
 }
