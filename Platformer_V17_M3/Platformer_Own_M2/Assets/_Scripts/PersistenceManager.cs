@@ -60,7 +60,7 @@ public class PersistenceManager : MonoBehaviour
         }
     }
 
-    public void runOver()
+    public void runOver(bool fromDeath)
     {
         if(lb==null)
         {
@@ -71,15 +71,27 @@ public class PersistenceManager : MonoBehaviour
                 Debug.Log("WTF!?");
             }
         }
+
         if(scoreTracker == null)
         {
             Debug.Log("No score tracker");
         }
+
+
         if(lb.isHighScore(scoreTracker.getScore())==true)
         {
             lb.addScore(data.name, scoreTracker.getScore());
-            scoreTracker.resetScore();
         }
+
+        if (fromDeath == false)
+        {
+            if (lb.isFastestTime(scoreTracker.getTime())==true)
+            {
+                lb.addTime(data.name, scoreTracker.getTime());
+            }
+        }
+        scoreTracker.resetScore();
+
     }
 
     public void setName(string n)

@@ -5,11 +5,10 @@ using UnityEngine;
 public class CoinBehaviour : MonoBehaviour
 {
     float rotationSpeed = 5f;
-    //ParticleSystem particleSystem;
 
     private void Awake()
     {
-        //particleSystem = this.gameObject.GetComponent<ParticleSystem>();  
+        
     }
 
     private void FixedUpdate()
@@ -22,12 +21,8 @@ public class CoinBehaviour : MonoBehaviour
 
     private void OnTriggerEnter2D(Collider2D collision)
     {
-        //Debug.Log("You hit a coin");
-        //particleSystem.Play();
         gameObject.GetComponent<SpriteRenderer>().enabled = false;
         this.gameObject.SetActive(false);
-        //Destroy(gameObject,1f);
-
         GameBehaviour.instance.addCoin();
     }
 }

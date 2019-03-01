@@ -134,13 +134,12 @@ public class GameBehaviour : MonoBehaviour
         lives = 5;
         currentLevel = 1;
         hasKey = false;
-
     }
 
     public void win()
     {
         //update score
-        LevelScore ls = new LevelScore(coins, TimerBehaviour.instance.timer);
+        LevelScore ls = new LevelScore(coins, ((TimerBehaviour.instance.timer)+(TimerBehaviour.instance.minutes*60f)));
         PersistenceManager.instance.levelCompleted(currentLevel, ls);
         checkpointHit = false;
         //change level
@@ -160,7 +159,7 @@ public class GameBehaviour : MonoBehaviour
         //Change to scene with game over scene
         int gameOverScene = 3;
         reset();
-        PersistenceManager.instance.runOver();
+        PersistenceManager.instance.runOver(true);
         SceneController.instance.changeScene(gameOverScene);
        // ConclusionControl.instance.changeText(false);
     }
@@ -168,7 +167,7 @@ public class GameBehaviour : MonoBehaviour
     public void levelEnd()
     {
         //Debug.Log("You died died, or you completed all levels... dunno which");
-        PersistenceManager.instance.runOver();
+        PersistenceManager.instance.runOver(false);
         SceneController.instance.changeScene(3);
     }
 
