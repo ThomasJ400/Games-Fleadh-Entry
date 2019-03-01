@@ -88,7 +88,10 @@ public class PersistenceManager : MonoBehaviour
         {
            Debug.Log("No Data?");
         }
+        data = new PersistentData();
         data.name = n;
+        scoreTracker.resetScore();
+
         Debug.Log("Data.name has been set to: " + data.name);
     }
 

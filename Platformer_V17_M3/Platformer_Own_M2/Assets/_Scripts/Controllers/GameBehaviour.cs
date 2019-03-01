@@ -17,6 +17,8 @@ public class GameBehaviour : MonoBehaviour
     public bool paused = false;
     [HideInInspector]
     public bool checkpointHit = false;
+    public float checked_time;
+    public float checked_mins;
     int coinsThisRun = 0;
 
 
@@ -113,7 +115,7 @@ public class GameBehaviour : MonoBehaviour
         } else
         {
         //    Debug.Log("Here");
-            PlayerBehaviour.instance.newPlayer();
+           // PlayerBehaviour.instance.newPlayer();
             nextLife();
             lives--;
             UIController.instance.updateUI();
@@ -127,6 +129,7 @@ public class GameBehaviour : MonoBehaviour
         lives = 5;
         currentLevel = 1;
         hasKey = false;
+
     }
 
     public void win()
@@ -138,11 +141,13 @@ public class GameBehaviour : MonoBehaviour
         //change level
         currentLevel++;
         hasKey = false;
-        SceneController.instance.nextLevel(currentLevel);
+        
         if(PersistenceManager.instance.data.completedLevels<SceneController.instance.getLastLevel())
         {
             PersistenceManager.instance.data.completedLevels++;
         }
+
+        SceneController.instance.nextLevel(currentLevel);
     }
 
     public void lose()
@@ -159,7 +164,7 @@ public class GameBehaviour : MonoBehaviour
     {
         //Debug.Log("You died died, or you completed all levels... dunno which");
         PersistenceManager.instance.runOver();
-        SceneController.instance.changeScene(0);
+        SceneController.instance.changeScene(3);
     }
 
     public void addCoin()
@@ -189,6 +194,11 @@ public class GameBehaviour : MonoBehaviour
     public int getCurrentLevel()
     {
         return currentLevel;
+    }
+
+    public void setCurrentLevel(int level)
+    {
+        currentLevel = level;
     }
 
     public int getLives()

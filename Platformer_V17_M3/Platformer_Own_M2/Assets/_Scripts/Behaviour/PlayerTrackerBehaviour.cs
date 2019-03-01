@@ -53,7 +53,7 @@ public class PlayerTrackerBehaviour : MonoBehaviour
                 {
                     isTracking = false;
                     timer = timeToHit;
-                    Debug.Log("No longer tracking");
+                    //Debug.Log("No longer tracking");
                 }
             }
             else

@@ -122,8 +122,8 @@ Transform:
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1828746850180768}
-  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 5.85, y: 0.15, z: 0}
+  m_LocalRotation: {x: 0, y: 0, z: 0.0013526253, w: 0.9999991}
+  m_LocalPosition: {x: -0.47, y: 0.91, z: 0}
   m_LocalScale: {x: 2, y: 2, z: 1}
   m_Children:
   - {fileID: 4035415706018180}
@@ -131,7 +131,7 @@ Transform:
   - {fileID: 4031737272912496}
   m_Father: {fileID: 0}
   m_RootOrder: 0
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0.155}
 --- !u!50 &50183075052064824
 Rigidbody2D:
   serializedVersion: 4
@@ -164,7 +164,7 @@ BoxCollider2D:
   m_IsTrigger: 0
   m_UsedByEffector: 0
   m_UsedByComposite: 0
-  m_Offset: {x: 0.006690502, y: 0.0646654}
+  m_Offset: {x: 0.006690503, y: 0.0646654}
   m_SpriteTilingProperty:
     border: {x: 0, y: 0, z: 0, w: 0}
     pivot: {x: 0, y: 0}
@@ -208,8 +208,8 @@ SpriteRenderer:
   m_AutoUVMaxDistance: 0.5
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
-  m_SortingLayerID: -571193963
-  m_SortingLayer: 3
+  m_SortingLayerID: 254979015
+  m_SortingLayer: 7
   m_SortingOrder: 0
   m_Sprite: {fileID: 21300058, guid: f9e778639f77ac64a8051b987996d816, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
@@ -252,8 +252,8 @@ SpriteRenderer:
   m_AutoUVMaxDistance: 0.5
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
-  m_SortingLayerID: -571193963
-  m_SortingLayer: 3
+  m_SortingLayerID: 254979015
+  m_SortingLayer: 7
   m_SortingOrder: 0
   m_Sprite: {fileID: 21300062, guid: f9e778639f77ac64a8051b987996d816, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
@@ -296,8 +296,8 @@ SpriteRenderer:
   m_AutoUVMaxDistance: 0.5
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
-  m_SortingLayerID: -571193963
-  m_SortingLayer: 3
+  m_SortingLayerID: 254979015
+  m_SortingLayer: 7
   m_SortingOrder: 0
   m_Sprite: {fileID: 21300060, guid: f9e778639f77ac64a8051b987996d816, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
@@ -322,8 +322,8 @@ HingeJoint2D:
   m_BreakForce: Infinity
   m_BreakTorque: Infinity
   m_AutoConfigureConnectedAnchor: 1
-  m_Anchor: {x: -0.03, y: 0}
-  m_ConnectedAnchor: {x: 5.79, y: 0.15}
+  m_Anchor: {x: 0.007, y: 0}
+  m_ConnectedAnchor: {x: -0.45600006, y: 0.9100379}
   m_UseMotor: 0
   m_Motor:
     m_MotorSpeed: 0

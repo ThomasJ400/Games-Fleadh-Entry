@@ -13,7 +13,6 @@ public class PersistentData
         {
             new LevelScore (0,0),
             new LevelScore (0,0),
-            new LevelScore (0,0),
             new LevelScore (0,0)
         };
         score = 0;

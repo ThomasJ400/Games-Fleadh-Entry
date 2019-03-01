@@ -14,7 +14,7 @@ public class PlayerMovement : MonoBehaviour
     public Transform groundCheck;
     public LayerMask whatIsGround;
     GameObject goPlayer;
-    float groundRadius = 0.07f;
+    float groundRadius = 0.08f;
     float cooldownTimer = 1f;
     float cooldown = 1f;
     bool cooldownActive = false;
@@ -155,10 +155,9 @@ public class PlayerMovement : MonoBehaviour
         }
     }
 
-    void jump()
+    public void jump()
     {
         Vector2 jumpVec = new Vector2(0, jumpForce);
-        // Debug.Log("Jump");
         rb.AddForce(jumpVec, ForceMode2D.Impulse);
 
         grounded = false;

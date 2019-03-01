@@ -7,10 +7,10 @@ public class SceneController : MonoBehaviour
 {
     public static SceneController instance = null;
     [HideInInspector]
-    int lastLevel = 2;
+    int lastLevel = 3;
     //offset is the level that levels start at -1.
     [HideInInspector]
-    public int offset = 4;
+    public int offset = 5;
 
     void Awake()
     {
@@ -19,7 +19,7 @@ public class SceneController : MonoBehaviour
 
     public void changeScene(int sceneID)
     {
-        if(sceneID >= 5)
+        if(sceneID >= 6)
         {
             if (AudioControl.instance == null)
             {
@@ -29,6 +29,8 @@ public class SceneController : MonoBehaviour
             {
                 AudioControl.instance.destroyMenuAudio();
             }
+            Debug.Log("sceneId - offset: " + (sceneID - offset));
+            GameBehaviour.instance.setCurrentLevel(sceneID-offset);
         }
 
         SceneManager.LoadScene(sceneID);

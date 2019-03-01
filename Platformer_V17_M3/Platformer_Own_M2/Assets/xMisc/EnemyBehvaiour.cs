@@ -62,6 +62,7 @@ public class EnemyBehvaiour : MonoBehaviour {
         {
             if (PlayerMovement.instance.grounded == false)
             {
+                PlayerMovement.instance.jump();
                 killEnemy();
             }
             else

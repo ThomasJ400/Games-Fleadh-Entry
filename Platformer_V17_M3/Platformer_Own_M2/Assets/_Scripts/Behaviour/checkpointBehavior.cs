@@ -11,6 +11,9 @@ public class checkpointBehavior : MonoBehaviour {
     [HideInInspector]
     public float checkedTime;
 
+    [HideInInspector]
+    public float checkedMins;
+
     private void Awake()
     {
         if(instance==null)
@@ -21,6 +24,10 @@ public class checkpointBehavior : MonoBehaviour {
     private void Start()
     {
         spawnPoint = GameObject.Find("World Spawn");
+        if(GameBehaviour.instance.checkpointHit==true)
+        {
+            checkpoint = true;
+        }
     }
 
     private void OnTriggerEnter2D(Collider2D collision)
@@ -28,7 +35,14 @@ public class checkpointBehavior : MonoBehaviour {
         if (checkpoint == false)
         {
             checkedTime = TimerBehaviour.instance.timer;
+            checkedMins = TimerBehaviour.instance.minutes;
+
+            GameBehaviour.instance.checked_time = checkedTime;
+            GameBehaviour.instance.checked_mins = checkedMins;
+
             //remove collectibles
+            Debug.Log("checkedTime: " + checkedTime);
+            Debug.Log("checkedMins: " + checkedMins);
             changeIcon();
             checkpoint = true;
 
@@ -36,7 +50,6 @@ public class checkpointBehavior : MonoBehaviour {
             //set checkpoint hit to true
             GameBehaviour.instance.checkpointHit = true;
             //changeSprite
-            
         }
     }
 
@@ -52,5 +65,8 @@ public class checkpointBehavior : MonoBehaviour {
         {
             collectibles[i].SetActive(false);
         }
+        changeIcon();
+        //TimerBehaviour.instance.timer = checkpointBehavior.instance.checkedTime;
+        //TimerBehaviour.instance.minutes = checkpointBehavior.instance.checkedMins;
     }
 }

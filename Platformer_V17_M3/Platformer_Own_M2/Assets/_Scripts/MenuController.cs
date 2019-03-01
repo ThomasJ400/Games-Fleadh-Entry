@@ -29,7 +29,7 @@ public class MenuController : MonoBehaviour {
             menuButtons[2].gameObject.SetActive(false);
         } else
         {
-            menuButtons[0].gameObject.SetActive(false);
+            //menuButtons[0].gameObject.SetActive(false);
             menuButtons[1].gameObject.SetActive(false);
         }
     }

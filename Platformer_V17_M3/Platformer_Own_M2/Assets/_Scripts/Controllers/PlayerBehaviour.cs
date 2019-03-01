@@ -16,8 +16,8 @@ public class PlayerBehaviour : MonoBehaviour
 
     private void Start()
     {
-        newPlayer();
         setWorldSpawn();
+        newPlayer();
     }
 
     private void setWorldSpawn()
@@ -27,13 +27,12 @@ public class PlayerBehaviour : MonoBehaviour
 
     public void newPlayer()
     {
-        setWorldSpawn();
         if(GameBehaviour.instance.checkpointHit == true)
         {
             worldSpawn = GameObject.Find("Checkpoint").transform.position;
             checkpointBehavior.instance.checkpointStart();
-            checkpointBehavior.instance.changeIcon();
-            TimerBehaviour.instance.timer = checkpointBehavior.instance.checkedTime;
+            //checkpointBehavior.instance.changeIcon();
+            
         }
         Instantiate(playerPrefab, worldSpawn, Quaternion.identity);
     }

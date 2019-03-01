@@ -5,7 +5,8 @@ using UnityEngine.UI;
 
 public class TimerBehaviour : MonoBehaviour {
     public static TimerBehaviour instance = null;
-    public float minutes = 1;
+    [HideInInspector]
+    public float minutes = 2;
     float value = 60f;
     [HideInInspector]
     public float timer;
@@ -16,11 +17,21 @@ public class TimerBehaviour : MonoBehaviour {
         {
             instance = this;
         }
+        else
+        {
+            Destroy(this.gameObject);
+        }
+        
     }
 
     private void Start()
     {
         resetTimer();
+        if(GameBehaviour.instance.checkpointHit == true)
+        {
+            timer = GameBehaviour.instance.checked_time;
+            minutes = GameBehaviour.instance.checked_mins;
+        }
     }
 
     void setTimerTextBox(float newValue)
