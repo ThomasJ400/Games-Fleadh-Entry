@@ -2,6 +2,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 using UnityEngine.UI;
 
 public class GameBehaviour : MonoBehaviour
@@ -77,12 +78,16 @@ public class GameBehaviour : MonoBehaviour
 
     private void Update()
     {
-        if(Input.GetKeyDown(KeyCode.Escape))
+        if (SceneManager.GetActiveScene().buildIndex >= 6)
         {
-            if(paused==false)
+            if (Input.GetKeyDown(KeyCode.Escape))
             {
-                paused = true;
-                UIController.instance.updateUI();
+
+                if (paused == false)
+                {
+                    paused = true;
+                    UIController.instance.updateUI();
+                }
             }
         }
     }
